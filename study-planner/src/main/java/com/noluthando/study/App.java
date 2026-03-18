@@ -17,7 +17,8 @@ public class App {
             System.out.println("\nStudy Planner");
             System.out.println("1. Add Task");
             System.out.println("2. List Tasks");
-            System.out.println("3. Exit");
+            System.out.println("3. Mark Task Completed");
+            System.out.println("4. Exit");
 
             String choice = scanner.nextLine();
 
@@ -27,21 +28,31 @@ public class App {
                 String title = scanner.nextLine();
 
                 tasks.add(new Task(title));
-
                 System.out.println("Task added.");
 
             } else if (choice.equals("2")) {
 
-                for (Task task : tasks) {
-                    System.out.println(task);
+                for (int i = 0; i < tasks.size(); i++) {
+                    System.out.println(i + ": " + tasks.get(i));
                 }
 
             } else if (choice.equals("3")) {
 
+                System.out.print("Enter task index: ");
+                String input = scanner.nextLine();
+
+                try {
+                    int index = Integer.parseInt(input);
+                    tasks.get(index).markCompleted();
+                    System.out.println("Task marked as completed.");
+                } catch (Exception e) {
+                    System.out.println("Invalid index.");
+                }
+
+            } else if (choice.equals("4")) {
                 break;
 
             } else {
-
                 System.out.println("Invalid option");
             }
         }
